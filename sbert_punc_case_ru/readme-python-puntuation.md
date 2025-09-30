@@ -20,7 +20,7 @@
 1) Перейдите в папку проекта и (опционально) создайте виртуальное окружение:
 
 ```powershell
-cd C:\Users\Resli\Desktop\voice-to-text\sbert_punc_case_ru
+cd voice-to-text\sbert_punc_case_ru
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
@@ -210,7 +210,7 @@ INFO: Service ready
 1) Клонируйте репозиторий (или перейдите в директорию проекта уже у вас на машине):
 
 ```powershell
-cd C:\Users\Resli\Desktop\voice-to-text\sbert_punc_case_ru
+cd voice-to-text\sbert_punc_case_ru
 ```
 
 2) Рекомендуется создать виртуальное окружение и активировать его:

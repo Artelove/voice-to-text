@@ -1,5 +1,3 @@
-!ggml-large-v3-turbo.bin
-
 # Visual Studio / .NET
 .vs/
 *.user
@@ -71,19 +69,6 @@ Thumbs.db
 *.tmp
 *.bak
 *.swp
-
-# Model / heavy binary artifacts (exclude large ML models and checkpoints)
-# Examples in this repo: ggml-large-v3-turbo.bin, model.safetensors
-*.bin
-*.safetensors
-*.ckpt
-*.pt
-*.pth
-*.onnx
-*.tflite
-
-# If you want to keep some model files tracked, add exceptions below, e.g.:
-!sbert_punc_case_ru/some_small_model_file.bin
 
 # IDE / OS specific
 .vscode/
