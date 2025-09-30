@@ -1,0 +1,113 @@
+!ggml-large-v3-turbo.bin
+
+# Visual Studio / .NET
+.vs/
+*.user
+*.userosscache
+*.suo
+*.sln.ide
+*.DotSettings.user
+*.DotSettings
+*.ncb
+*.opensdf
+*.sdf
+*.cache
+*.log
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+*.dll
+*.exe
+*.app
+*.appx
+*.msi
+*.msix
+*.nupkg
+project.assets.json
+project.nuget.cache
+*.tmp
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code workspace (optional)
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+venv/
+.env
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+
+# Packaging
+*.egg
+*.whl
+
+# Jupyter
+.ipynb_checkpoints
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Model / heavy binary artifacts (exclude large ML models and checkpoints)
+# Examples in this repo: ggml-large-v3-turbo.bin, model.safetensors
+*.bin
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.tflite
+
+# If you want to keep some model files tracked, add exceptions below, e.g.:
+# !sbert_punc_case_ru/some_small_model_file.bin
+
+# IDE / OS specific
+.vscode/
+*.db
+
+# Secrets / local config
+secrets.json
+config.local.json
+local.settings.json
+
+# Generated python egg-info from packaging
+**/sbert_punc_case_ru.egg-info/
+
+# Ignore user-specific JetBrains Rider files
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore NuGet packages directory
+packages/
+
+# Ignore coverage and test outputs
+coverage/
+
+# End of file
