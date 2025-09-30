@@ -1,0 +1,18 @@
+<Window x:Class="VoiceToText.App.RecordingOverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ShowActivated="False"
+        Width="40"
+        Height="40"
+        ResizeMode="NoResize">
+    <Grid>
+        <Ellipse Fill="#99000000" />
+        <Ellipse Margin="12" Fill="#FFFF5252" />
+    </Grid>
+</Window>
+

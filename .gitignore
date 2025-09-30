@@ -21,8 +21,6 @@ Debug/
 Release/
 *.dll
 *.exe
-*.app
-*.appx
 *.msi
 *.msix
 *.nupkg
@@ -85,7 +83,7 @@ Thumbs.db
 *.tflite
 
 # If you want to keep some model files tracked, add exceptions below, e.g.:
-# !sbert_punc_case_ru/some_small_model_file.bin
+!sbert_punc_case_ru/some_small_model_file.bin
 
 # IDE / OS specific
 .vscode/
