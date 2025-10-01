@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import logging
 from pathlib import Path
 from typing import Iterable, List, Optional, Sequence, Union
 
@@ -8,6 +9,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 from transformers import AutoModelForTokenClassification, AutoTokenizer
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Прогнозируемые знаки препинания
 PUNK_MAPPING = {".": "PERIOD", ",": "COMMA", "?": "QUESTION"}
@@ -76,6 +81,40 @@ def decode_label(label, classes="all"):
 
 
 DEFAULT_MODEL_PATH = Path(__file__).resolve().parent.parent
+HUGGINGFACE_MODEL_ID = "kontur-ai/sbert_punc_case_ru"
+
+
+def _ensure_model_downloaded(model_path: Path) -> None:
+    """
+    Check if model file exists and download it from HuggingFace if needed.
+    
+    Args:
+        model_path: Path to the model directory
+    """
+    # Check if the main model file exists
+    model_file = model_path / "model.safetensors"
+    
+    if not model_file.exists():
+        logger.info("Model file 'model.safetensors' not found")
+        logger.info(f"Downloading model from HuggingFace: {HUGGINGFACE_MODEL_ID}")
+        
+        try:
+            from huggingface_hub import hf_hub_download
+            
+            # Download only the model.safetensors file
+            downloaded_path = hf_hub_download(
+                repo_id=HUGGINGFACE_MODEL_ID,
+                filename="model.safetensors",
+                local_dir=str(model_path),
+                local_dir_use_symlinks=False
+            )
+            logger.info(f"Model downloaded successfully to: {downloaded_path}")
+        except ImportError:
+            logger.error("huggingface_hub package not installed. Please install it with: pip install huggingface_hub")
+            raise
+        except Exception as e:
+            logger.error(f"Failed to download model: {e}")
+            raise
 
 
 class SbertPuncCase(nn.Module):
@@ -88,7 +127,11 @@ class SbertPuncCase(nn.Module):
 
         resolved_path = Path(model_path) if model_path else DEFAULT_MODEL_PATH
         if not resolved_path.exists():
-            raise FileNotFoundError(f"Model path not found: {resolved_path}")
+            logger.info(f"Creating model directory: {resolved_path}")
+            resolved_path.mkdir(parents=True, exist_ok=True)
+        
+        # Ensure model files are downloaded
+        _ensure_model_downloaded(resolved_path)
 
         self._device = self._resolve_device(device)
         self.tokenizer = AutoTokenizer.from_pretrained(resolved_path, strip_accents=False)
