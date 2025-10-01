@@ -104,19 +104,24 @@ public sealed class WhisperService : IAsyncDisposable
 
         try
         {
+            Logger.Info("🎮 Attempting to initialize Whisper with GPU (CUDA) support...");
             _factory = WhisperFactory.FromPath(_modelPath, new WhisperFactoryOptions
             {
                 UseGpu = true // Try GPU first for better performance
 
             });
+            Logger.Info("✅ GPU (CUDA) successfully initialized for Whisper transcription!");
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Logger.Info("GPU not available, using CPU mode for Whisper");
+            Logger.Warn("⚠️ GPU initialization failed: {0}", ex.Message);
+            Logger.Debug("GPU error details: {0}", ex.ToString());
+            Logger.Info("🔄 Falling back to CPU mode for Whisper...");
             _factory = WhisperFactory.FromPath(_modelPath, new WhisperFactoryOptions
             {
                 UseGpu = false
             });
+            Logger.Info("✅ CPU mode initialized successfully");
         }
 
         return _factory;

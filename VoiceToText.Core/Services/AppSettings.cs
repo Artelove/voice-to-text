@@ -2,7 +2,7 @@ namespace VoiceToText.Core.Services;
 
 public sealed record AppSettings
 {
-    public string ModelPath { get; init; } = @"..\..\..\..\ggml-large-v3-turbo.bin";
+    public string ModelPath { get; init; } = "ggml-large-v3-turbo.bin";
     public string Language { get; init; } = "auto";
     public int SampleRate { get; init; } = 16000;
     public int Channels { get; init; } = 1;
